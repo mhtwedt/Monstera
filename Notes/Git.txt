@@ -7,5 +7,20 @@ This is a quick way of creating a git repository that is not empty.
 We've also set up a .gitignore folder
 with
 # Directories
-which are directories from the root folder path, which will be ignored 
-when recursively iterating through the folder
+and #Files
+
+useful git commands
+
+git diff
+	I need to look into this for more diff options
+
+git status
+
+git reset .
+
+git add *
+
+git commit -m "Msg"
+
+git push origin {Branch Name}
+	so currently we're using git push origin main
