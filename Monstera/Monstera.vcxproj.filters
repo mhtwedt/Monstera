@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Monstera">
+      <UniqueIdentifier>{2E79FAF4-1A46-5500-435F-43A82F8B8A8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monstera\Events">
+      <UniqueIdentifier>{5245A2B4-BED0-0F79-C7E1-926D33EC6B79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Monstera.h" />
+    <ClInclude Include="src\Monstera\Application.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\EntryPoint.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Events\ApplicationEvent.h">
+      <Filter>Monstera\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Events\Event.h">
+      <Filter>Monstera\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Events\KeyEvent.h">
+      <Filter>Monstera\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Events\MouseEvent.h">
+      <Filter>Monstera\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Log.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Window.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mdpch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Monstera\Application.cpp">
+      <Filter>Monstera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Log.cpp">
+      <Filter>Monstera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mdpch.cpp" />
+  </ItemGroup>
+</Project>

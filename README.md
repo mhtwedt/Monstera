@@ -1,3 +1,5 @@
 # Monstera
+Monstera Engine
 
-Game Engine based off thecherno/hazel
+Based off of The Cherno's open source game engine series
+https://thecherno.com/engine

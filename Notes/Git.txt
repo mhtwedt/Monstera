@@ -1,0 +1,11 @@
+Git Setup:
+
+Create Repository, create folder and new vs project.
+Then copy the hidden git folder into the vs project folder.
+This is a quick way of creating a git repository that is not empty.
+
+We've also set up a .gitignore folder
+with
+# Directories
+which are directories from the root folder path, which will be ignored 
+when recursively iterating through the folder
