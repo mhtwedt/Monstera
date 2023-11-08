@@ -18,7 +18,6 @@ int main(int argc, char** argv)
 	auto app = Monstera::CreateApplication();
 	app->Run();
 	delete app;
-
 }
 
 #endif

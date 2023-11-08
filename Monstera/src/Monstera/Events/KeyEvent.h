@@ -30,25 +30,25 @@ namespace Monstera {
 		{
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << "repeats)";
-			return ss.str;
+			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
 	private:
-		int m_RepeatCount
+		int m_RepeatCount;
 	};
 
 	class MONSTERA_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyPressedEvent(int keycode, int repeatCount)
+		KeyReleasedEvent(int keycode)
 			: KeyEvent(keycode) {}
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode;
-			return ss.str;
+			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
