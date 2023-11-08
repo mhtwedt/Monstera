@@ -4,23 +4,23 @@ Create Repository, create folder and new vs project.
 Then copy the hidden git folder into the vs project folder.
 This is a quick way of creating a git repository that is not empty.
 
-We've also set up a .gitignore folder
+We've set up a .gitignore folder
 with
-# Directories
-and #Files
+#Directories
+#Files
+which wont be pushed to the repository
 
-useful git commands
+a .gitmodules folder was created automatically
 
-git diff
-	I need to look into this for more diff options
+
+useful git commends
+
+git add *
 
 git status
 
 git reset .
 
-git add *
+git commit -m "message"
 
-git commit -m "Msg"
-
-git push origin {Branch Name}
-	so currently we're using git push origin main
+git push origin main
