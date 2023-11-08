@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Monstera/Window.h"
-#include "Monstera/Log.h"
 
 #include <GLFW/glfw3.h>
 
