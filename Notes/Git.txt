@@ -1,3 +1,16 @@
+*************************************
+useful git commends
+
+git add *
+
+git status
+
+git reset .
+
+git commit -m "message"
+
+git push origin main
+*************************************
 Git Setup:
 
 Create Repository, create folder and new vs project.
@@ -11,16 +24,14 @@ with
 which wont be pushed to the repository
 
 a .gitmodules folder was created automatically
+*************************************
+To remove a submodule you need to:
 
-
-useful git commends
-
-git add *
-
-git status
-
-git reset .
-
-git commit -m "message"
-
-git push origin main
+Delete the relevant section from the .gitmodules file.
+Stage the .gitmodules changes git add .gitmodules
+Delete the relevant section from .git/config.
+Run git rm --cached path_to_submodule (no trailing slash).
+Run rm -rf .git/modules/path_to_submodule (no trailing slash).
+Commit git commit -m "Removed submodule "
+Delete the now untracked submodule files rm -rf path_to_submodule
+*************************************
