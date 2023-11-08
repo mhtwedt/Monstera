@@ -1,6 +1,3 @@
 [submodule "Monstera/vendor/spdlog"]
 	path = Monstera/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "Monstera/vendor/glfw"]
-	path = Monstera/vendor/glfw
-	url = https://github.com/glfw/glfw/
