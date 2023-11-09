@@ -37,6 +37,12 @@
     <ClInclude Include="src\Monstera\Events\MouseEvent.h">
       <Filter>Monstera\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Layer.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\LayerStack.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Log.h">
       <Filter>Monstera</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Monstera\Application.cpp">
+      <Filter>Monstera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Layer.cpp">
+      <Filter>Monstera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\LayerStack.cpp">
       <Filter>Monstera</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Log.cpp">

@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include "Monstera/Application.h"
+#include "Monstera/Layer.h"
 #include "Monstera/Log.h"
 
 // --- Entry Point---------------

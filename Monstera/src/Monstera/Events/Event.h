@@ -80,6 +80,9 @@ namespace Monstera
 	{
 		friend class EventDispatcher;
 	public:
+
+		bool Handled = false;
+
 		virtual EventType GetEventType() const = 0; // pure virtual meaning every event has to implement them
 		virtual const char* GetName() const = 0; // possibly debug only, as const char* is more expensive
 		virtual int GetCategoryFlags() const = 0; // possibly debug only, as const char* is more expensive
@@ -89,8 +92,7 @@ namespace Monstera
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
-		bool m_Handled = false;
+
 	};
 
 	class EventDispatcher
@@ -109,7 +111,7 @@ namespace Monstera
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;
