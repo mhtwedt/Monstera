@@ -1,15 +1,18 @@
 #include "mdpch.h"
 #include "Application.h"
 
-
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
 
 namespace Monstera
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		MD_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
 		// because this is an explicit constructor, we have to use std::unique_ptr<Window>(Window::Create());
 		// meaning we dont have to delete the window ourselves when the application terminates?
 		// "Application is a singlton, meaning we only have one application for our application so this is fine?"
@@ -26,11 +29,13 @@ namespace Monstera
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_LayerStack.PushOverLay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)

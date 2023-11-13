@@ -8,6 +8,7 @@
 #include "Monstera/Application.h"
 #include "Monstera/Layer.h"
 #include "Monstera/Log.h"
+#include "Monstera/ImGui/ImGuiLayer.h"
 
 // --- Entry Point---------------
 #include "Monstera/EntryPoint.h"

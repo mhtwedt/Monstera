@@ -7,8 +7,14 @@
     <Filter Include="Monstera\Events">
       <UniqueIdentifier>{5245A2B4-BED0-0F79-C7E1-926D33EC6B79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Monstera\ImGui">
+      <UniqueIdentifier>{D89830D7-C466-24DD-ADFA-940399670042}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Monstera\Events\MouseEvent.h">
       <Filter>Monstera\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h">
+      <Filter>Monstera\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Layer.h">
       <Filter>Monstera</Filter>
     </ClInclude>
@@ -49,6 +58,12 @@
     <ClInclude Include="src\Monstera\Window.h">
       <Filter>Monstera</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL_loader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -58,6 +73,9 @@
     <ClCompile Include="src\Monstera\Application.cpp">
       <Filter>Monstera</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monstera\ImGui\ImGuiLayer.cpp">
+      <Filter>Monstera\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Monstera\Layer.cpp">
       <Filter>Monstera</Filter>
     </ClCompile>
@@ -66,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="src\Monstera\Log.cpp">
       <Filter>Monstera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGL.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

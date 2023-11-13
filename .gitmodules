@@ -5,3 +5,6 @@
 	path = Monstera/vendor/GLFW
 	url = https://github.com/mhtwedt/glfw
 	branch = 3.3-stable
+[submodule "Monstera/vendor/imgui"]
+	path = Monstera/vendor/imgui
+	url = https://github.com/mhtwedt/imgui

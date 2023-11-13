@@ -13,8 +13,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Monstera/vendor/GLFW/include"
+IncludeDir["Glad"] = "Monstera/vendor/Glad/include"
+IncludeDir["ImGui"] = "Monstera/vendor/imgui"
+
 
 include "Monstera/vendor/GLFW"
+include "Monstera/vendor/Glad"
+include "Monstera/vendor/imgui"
 
 project "Monstera"
 	location "Monstera"
@@ -37,12 +42,16 @@ project "Monstera"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib",
 		"dwmapi.lib"
 	}
@@ -55,7 +64,8 @@ project "Monstera"
 		defines
 		{
 			"MD_PLATFORM_WINDOWS",
-			"MD_BUILD_DLL"
+			"MD_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
