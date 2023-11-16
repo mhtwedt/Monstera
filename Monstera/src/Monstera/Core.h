@@ -23,3 +23,5 @@
 // Shift 1 by x places
 // used EventCategory flags in Event.h
 #define BIT(x) (1 << x)
+
+#define MD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)

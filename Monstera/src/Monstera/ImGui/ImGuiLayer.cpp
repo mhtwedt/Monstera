@@ -4,14 +4,17 @@
 
 #include "imgui.h"
 #include "Platform/OpenGL/ImGuiOpenGL.h"
+//#include "backends/imgui_impl_opengl3.h"
 #include "Monstera/Application.h"
 
-#include "GLFW/glfw3.h"
+// TEMPORARY
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Monstera {
 
 	ImGuiLayer::ImGuiLayer()
-		: Layer("DebugDraw/ImGuiLayer")
+		: Layer("ImGuiLayer")
 	{
 
 	}
@@ -30,7 +33,7 @@ namespace Monstera {
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-
+		// io.MousePos = ImVec2(0.0f, 0.0f);
 
 		//Temporary: will use monstera key codes
 
@@ -131,7 +134,7 @@ namespace Monstera {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.getWindow().GetWidth(), app.getWindow().GetHeight());
+		io.DisplaySize = ImVec2((float)app.getWindow().GetWidth(), (float)app.getWindow().GetHeight());
 
 
 		float time = (float)glfwGetTime();
@@ -146,11 +149,112 @@ namespace Monstera {
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		float pos = io.DeltaTime;
+		// printf("delta time: (%.1f)\n", pos*1000);
 	}
 
 	void ImGuiLayer::OnEvent(Event& event)
 	{
+		EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<MouseButtonPressedEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
+		dispatcher.Dispatch<MouseButtonReleasedEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
+		dispatcher.Dispatch<MouseMovedEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
+		dispatcher.Dispatch<MouseScrolledEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
+		dispatcher.Dispatch<KeyPressedEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
+		dispatcher.Dispatch<KeyReleasedEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
+		dispatcher.Dispatch<KeyTypedEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
+		dispatcher.Dispatch<WindowResizeEvent>(MD_BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
 
+
+	}
+
+	bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDown[e.getMouseButton()] = true;
+
+		 printf("Mouse Position: (%.1f, %.1f)\n", (float)io.MousePos.x, (float)io.MousePos.y);
+
+		// We want other layers to handle this event
+		return false;
+	}
+
+	bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDown[e.getMouseButton()] = false;
+
+
+		// io.MousePos = ImVec2(mouse_x, mouse_y); // Set your actual mouse coordinates
+		// Print mouse position
+		// printf("Mouse Position: (%.1f, %.1f)\n", io.MousePos.x, io.MousePos.y);
+
+		// We want other layers to receive this event
+		return false;
+	}
+
+	bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MousePos = ImVec2(e.GetX(), e.GetY());
+
+		//ImVec2 tempMousePos = io.MousePos.
+		printf("Mouse Moved Event: (%.1f, %.1f)\n", io.MousePos.x, io.MousePos.y);
+		// We want other layers to receive this event
+		return false;
+	}
+
+	bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseWheelH += e.GetXOffset();
+		io.MouseWheel += e.GetYOffset();
+
+		// We want other layers to receive this event
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.KeysDown[e.GetKeyCode()] = true;
+
+		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.KeysDown[e.GetKeyCode()] = false;
+
+		return false;
+	}
+
+	 bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
+	 {
+		 ImGuiIO& io = ImGui::GetIO();
+		 int keycode = e.GetKeyCode();
+		 if (keycode > 0 && keycode < 0x10000)
+			 io.AddInputCharacter((unsigned short)keycode);
+
+		return false;
+	 }
+
+	bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.DisplaySize = ImVec2((float)e.GetWidth(), (float)e.GetHeight());
+		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+		glViewport(0, 0, e.GetWidth(), e.GetHeight());
+
+		printf("Window Size: (%.1f, %.1f)\n", (float)e.GetWidth(), (float)e.GetHeight());
+
+		return false;
 	}
 
 }

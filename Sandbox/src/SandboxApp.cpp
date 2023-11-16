@@ -11,12 +11,12 @@ public:
 
 	void OnUpdate() override
 	{
-		MD_INFO("ExampleLayer::Update");
+		//MD_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Monstera::Event& event) override
 	{
-		MD_TRACE("{0}", event);
+		// MD_TRACE("{0}", event);
 	}
 
 };
