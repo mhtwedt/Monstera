@@ -10,6 +10,10 @@
 	#error only supports Windows
 #endif
 
+#ifdef MD_DEBUG
+	#define MD_ENABLE_ASSERTS
+#endif
+
 #ifdef MD_ENABLE_ASSERTS
 	#define MD_ASSERT(x, ...) {if (!(x)) {MD_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define MD_CORE_ASSERT(x, ...) {if (!(x)) {MD_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

@@ -46,6 +46,9 @@
     <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h">
       <Filter>Monstera\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Input.h">
+      <Filter>Monstera</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Layer.h">
       <Filter>Monstera</Filter>
     </ClInclude>
@@ -63,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL_loader.h">
       <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
@@ -87,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGL.cpp">
       <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

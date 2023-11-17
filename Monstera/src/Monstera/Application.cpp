@@ -3,6 +3,8 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
+
 namespace Monstera
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -67,6 +69,9 @@ namespace Monstera
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
+			MD_CORE_TRACE("Input Polling example: {0}, {1}", x, y); // This is run with WindowsInput
 
 			m_Window->OnUpdate();
 		}

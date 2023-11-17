@@ -8,18 +8,23 @@ workspace "Monstera"
 		"Dist"
 	}
 
+	startproject "Sandbox"
+
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "Monstera/vendor/GLFW/include"
-IncludeDir["Glad"] = "Monstera/vendor/Glad/include"
+IncludeDir["GLFW"]  = "Monstera/vendor/GLFW/include"
+IncludeDir["Glad"]  = "Monstera/vendor/Glad/include"
 IncludeDir["ImGui"] = "Monstera/vendor/imgui"
 
+group "Dependencies"
+	include "Monstera/vendor/GLFW"
+	include "Monstera/vendor/Glad"
+	include "Monstera/vendor/imgui"
+group ""
 
-include "Monstera/vendor/GLFW"
-include "Monstera/vendor/Glad"
-include "Monstera/vendor/imgui"
 
 project "Monstera"
 	location "Monstera"
@@ -75,29 +80,30 @@ project "Monstera"
 
 	filter "configurations:Debug"
 		defines "MD_DEBUG"
-		buildoptions "/MDd"
+	--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
 		symbols "On"
 	--	staticruntime "off"
-	--	runtime "Debug"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "MD_RELEASE"
-		buildoptions "/MD"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
 		optimize "On"
 	--	staticruntime "off"
-	--	runtime "Release"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "MD_DIST"
-		buildoptions "/MD"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
 		optimize "On"
 	--	staticruntime "off"
-	--	runtime "Release"
+		runtime "Release"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -131,21 +137,21 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "MD_DEBUG"
-		buildoptions "/MDd"
+	--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
 		symbols "On"
 	--	staticruntime "off"
-	--	runtime "Debug"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "MD_RELEASE"
-		buildoptions "/MD"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
 		optimize "On"
 	--	staticruntime "off"
-	--	runtime "Release"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "MD_DIST"
-		buildoptions "/MD"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
 		optimize "On"
 	--	staticruntime "off"
-	--	runtime "Release"
+		runtime "Release"

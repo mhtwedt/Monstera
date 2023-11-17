@@ -84,7 +84,6 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -111,7 +110,6 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -139,7 +137,6 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -164,12 +161,14 @@
     <ClInclude Include="src\Monstera\Events\KeyEvent.h" />
     <ClInclude Include="src\Monstera\Events\MouseEvent.h" />
     <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Monstera\Input.h" />
     <ClInclude Include="src\Monstera\Layer.h" />
     <ClInclude Include="src\Monstera\LayerStack.h" />
     <ClInclude Include="src\Monstera\Log.h" />
     <ClInclude Include="src\Monstera\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL_loader.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\mdpch.h" />
   </ItemGroup>
@@ -180,6 +179,7 @@
     <ClCompile Include="src\Monstera\LayerStack.cpp" />
     <ClCompile Include="src\Monstera\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGL.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mdpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

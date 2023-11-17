@@ -134,7 +134,7 @@ namespace Monstera {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2((float)app.getWindow().GetWidth(), (float)app.getWindow().GetHeight());
+		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
 
 		float time = (float)glfwGetTime();
@@ -173,7 +173,7 @@ namespace Monstera {
 		ImGuiIO& io = ImGui::GetIO();
 		io.MouseDown[e.getMouseButton()] = true;
 
-		 printf("Mouse Position: (%.1f, %.1f)\n", (float)io.MousePos.x, (float)io.MousePos.y);
+		// printf("Mouse Position: (%.1f, %.1f)\n", (float)io.MousePos.x, (float)io.MousePos.y);
 
 		// We want other layers to handle this event
 		return false;
@@ -199,7 +199,7 @@ namespace Monstera {
 		io.MousePos = ImVec2(e.GetX(), e.GetY());
 
 		//ImVec2 tempMousePos = io.MousePos.
-		printf("Mouse Moved Event: (%.1f, %.1f)\n", io.MousePos.x, io.MousePos.y);
+		// printf("Mouse Moved Event: (%.1f, %.1f)\n", io.MousePos.x, io.MousePos.y);
 		// We want other layers to receive this event
 		return false;
 	}
@@ -252,7 +252,7 @@ namespace Monstera {
 		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
 		glViewport(0, 0, e.GetWidth(), e.GetHeight());
 
-		printf("Window Size: (%.1f, %.1f)\n", (float)e.GetWidth(), (float)e.GetHeight());
+		// printf("Window Size: (%.1f, %.1f)\n", (float)e.GetWidth(), (float)e.GetHeight());
 
 		return false;
 	}
