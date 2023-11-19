@@ -162,9 +162,11 @@
     <ClInclude Include="src\Monstera\Events\MouseEvent.h" />
     <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Monstera\Input.h" />
+    <ClInclude Include="src\Monstera\KeyCodes.h" />
     <ClInclude Include="src\Monstera\Layer.h" />
     <ClInclude Include="src\Monstera\LayerStack.h" />
     <ClInclude Include="src\Monstera\Log.h" />
+    <ClInclude Include="src\Monstera\MouseButtonCodes.h" />
     <ClInclude Include="src\Monstera\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL_loader.h" />

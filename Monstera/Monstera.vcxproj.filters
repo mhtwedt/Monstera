@@ -74,6 +74,8 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\mdpch.h" />
+    <ClInclude Include="src\Monstera\KeyCodes.h" />
+    <ClInclude Include="src\Monstera\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Monstera\Application.cpp">

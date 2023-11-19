@@ -70,8 +70,11 @@ namespace Monstera
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			auto [x, y] = Input::GetMousePosition();
-			MD_CORE_TRACE("Input Polling example: {0}, {1}", x, y); // This is run with WindowsInput
+		//	auto [x, y] = Input::GetMousePosition();
+		//	MD_CORE_TRACE("Input Polling example: {0}, {1}", x, y); // This is run with WindowsInput
+
+		//	bool ctrlkey = Input::IsKeyPressed(GLFW_KEY_LEFT_CONTROL);
+		//	MD_CORE_TRACE("Input Polling example is ctrl pressed: {0}", ctrlkey); // This is run with WindowsInput
 
 			m_Window->OnUpdate();
 		}

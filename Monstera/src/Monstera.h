@@ -10,6 +10,10 @@
 #include "Monstera/Log.h"
 #include "Monstera/ImGui/ImGuiLayer.h"
 
+#include "Monstera/Input.h"
+#include "Monstera/MouseButtonCodes.h"
+#include "Monstera/KeyCodes.h"
+
 // --- Entry Point---------------
 #include "Monstera/EntryPoint.h"
 // ------------------------------
