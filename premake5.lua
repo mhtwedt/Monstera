@@ -18,11 +18,13 @@ IncludeDir = {}
 IncludeDir["GLFW"]  = "Monstera/vendor/GLFW/include"
 IncludeDir["Glad"]  = "Monstera/vendor/Glad/include"
 IncludeDir["ImGui"] = "Monstera/vendor/imgui"
+IncludeDir["glm"] = "Monstera/vendor/glm"
 
 group "Dependencies"
 	include "Monstera/vendor/GLFW"
 	include "Monstera/vendor/Glad"
 	include "Monstera/vendor/imgui"
+--	include "Monstera/vendor/glm"
 group ""
 
 
@@ -40,7 +42,10 @@ project "Monstera"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
+
 	}
 
 	includedirs
@@ -49,7 +54,8 @@ project "Monstera"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -117,7 +123,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Monstera/vendor/spdlog/include",
-		"Monstera/src"
+		"Monstera/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links

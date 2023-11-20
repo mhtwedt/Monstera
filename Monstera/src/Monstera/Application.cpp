@@ -5,6 +5,8 @@
 
 #include "Input.h"
 
+#include "glm/glm.hpp"
+
 namespace Monstera
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
