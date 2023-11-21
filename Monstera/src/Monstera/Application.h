@@ -7,6 +7,7 @@
 #include "Monstera/Events/Event.h"
 #include "Monstera/Events/ApplicationEvent.h"
 
+#include "Monstera/ImGui/ImGuiLayer.h"
 
 namespace Monstera {
 
@@ -30,6 +31,8 @@ namespace Monstera {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		std::unique_ptr<ImGuiLayer> m_ImGuiLayer;
+
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;

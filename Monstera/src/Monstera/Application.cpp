@@ -23,6 +23,8 @@ namespace Monstera
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_ImGuiLayer = std::make_unique<ImGuiLayer>();
 	}
 
 	Application::~Application()
@@ -71,6 +73,13 @@ namespace Monstera
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
+			m_ImGuiLayer->End();
+
 
 		//	auto [x, y] = Input::GetMousePosition();
 		//	MD_CORE_TRACE("Input Polling example: {0}, {1}", x, y); // This is run with WindowsInput

@@ -168,8 +168,6 @@
     <ClInclude Include="src\Monstera\Log.h" />
     <ClInclude Include="src\Monstera\MouseButtonCodes.h" />
     <ClInclude Include="src\Monstera\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGL_loader.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\mdpch.h" />
@@ -597,7 +595,6 @@
     <ClCompile Include="src\Monstera\Layer.cpp" />
     <ClCompile Include="src\Monstera\LayerStack.cpp" />
     <ClCompile Include="src\Monstera\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGL.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mdpch.cpp">
@@ -611,8 +608,8 @@
     <ProjectReference Include="vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
     </ProjectReference>
-    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
-      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
+    <ProjectReference Include="vendor\imgui\imGui.vcxproj">
+      <Project>{E00FA80F-4C24-D0C0-15A6-73208179CCF1}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
