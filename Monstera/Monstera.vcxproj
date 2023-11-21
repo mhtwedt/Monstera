@@ -592,6 +592,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Monstera\Application.cpp" />
+    <ClCompile Include="src\Monstera\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Monstera\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Monstera\Layer.cpp" />
     <ClCompile Include="src\Monstera\LayerStack.cpp" />
