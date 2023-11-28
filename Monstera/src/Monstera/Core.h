@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef MD_PLATFORM_WINDOWS
-	#ifdef MD_BUILD_DLL
-		#define MONSTERA_API _declspec(dllexport)
+	#if MD_DYNAMIC_LINK
+		#ifdef MD_BUILD_DLL
+			#define MONSTERA_API _declspec(dllexport)
+		#else
+			#define MONSTERA_API _declspec(dllimport)
+		#endif
 	#else
-		#define MONSTERA_API _declspec(dllimport)
+		#define MONSTERA_API
 	#endif
 #else
 	#error only supports Windows

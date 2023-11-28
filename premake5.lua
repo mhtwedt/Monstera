@@ -30,8 +30,10 @@ group ""
 
 project "Monstera"
 	location "Monstera"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++20"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -46,6 +48,11 @@ project "Monstera"
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -68,8 +75,6 @@ project "Monstera"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++20"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -79,29 +84,25 @@ project "Monstera"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
 
 	filter "configurations:Debug"
 		defines "MD_DEBUG"
 	--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
-		symbols "On"
+		symbols "on"
 	--	staticruntime "off"
 		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "MD_RELEASE"
 	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
-		optimize "On"
+		optimize "on"
 	--	staticruntime "off"
 		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "MD_DIST"
 	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
-		optimize "On"
+		optimize "on"
 	--	staticruntime "off"
 		runtime "Release"
 
@@ -109,7 +110,8 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++20"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -133,7 +135,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++20"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -145,20 +146,20 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "MD_DEBUG"
 	--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
-		symbols "On"
+		symbols "on"
 	--	staticruntime "off"
 		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "MD_RELEASE"
 	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
-		optimize "On"
+		optimize "on"
 	--	staticruntime "off"
 		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "MD_DIST"
 	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
-		optimize "On"
+		optimize "on"
 	--	staticruntime "off"
 		runtime "Release"
