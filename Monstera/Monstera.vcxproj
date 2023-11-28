@@ -158,6 +158,8 @@
     <ClInclude Include="src\Monstera\LayerStack.h" />
     <ClInclude Include="src\Monstera\Log.h" />
     <ClInclude Include="src\Monstera\MouseButtonCodes.h" />
+    <ClInclude Include="src\Monstera\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Monstera\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -586,6 +588,7 @@
     <ClCompile Include="src\Monstera\Layer.cpp" />
     <ClCompile Include="src\Monstera\LayerStack.cpp" />
     <ClCompile Include="src\Monstera\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mdpch.cpp">

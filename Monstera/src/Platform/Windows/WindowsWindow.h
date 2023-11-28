@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Monstera/Window.h"
+#include "Monstera/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Monstera {
 
@@ -30,6 +32,7 @@ namespace Monstera {
 
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		// struct could be used to pass window data to glfw
 		// more concise than passing the whole class
