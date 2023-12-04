@@ -9,6 +9,10 @@
 
 #include "Monstera/ImGui/ImGuiLayer.h"
 
+#include "Monstera/Renderer/Shader.h"
+#include "Monstera/Renderer/Buffer.h"
+#include "Monstera/Renderer/VertexArray.h"
+
 namespace Monstera {
 
 
@@ -36,6 +40,14 @@ namespace Monstera {
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;
+
+
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
+		std::shared_ptr<Shader> m_ShaderSquare;
+		std::shared_ptr<VertexArray> m_SquareVA;
+
 	private:
 		static Application* s_Instance;
 	};
