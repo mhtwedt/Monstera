@@ -126,6 +126,7 @@ project "Sandbox"
 	{
 		"Monstera/vendor/spdlog/include",
 		"Monstera/src",
+		"Monstera/vendor",
 		"%{IncludeDir.glm}"
 	}
 

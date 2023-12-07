@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Monstera/Core.h"
+#include "Monstera/Core/Timestep.h"
 #include "Monstera/Events/Event.h"
 
 namespace Monstera
@@ -14,7 +15,7 @@ namespace Monstera
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
