@@ -7,6 +7,9 @@
     <Filter Include="src\Monstera">
       <UniqueIdentifier>{257C7425-11DF-03CA-BA64-3C80A6A6CF4C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Monstera\Core">
+      <UniqueIdentifier>{9DFF6947-0916-68DD-528D-F3FEBEE23865}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Monstera\Events">
       <UniqueIdentifier>{696C0ACF-D5CD-E7DC-5E3B-2E8FCA9B1E9C}</UniqueIdentifier>
     </Filter>
@@ -46,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Monstera.h">
@@ -56,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="src\Monstera\Core.h">
       <Filter>src\Monstera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\Timestep.h">
+      <Filter>src\Monstera\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\EntryPoint.h">
       <Filter>src\Monstera</Filter>
@@ -114,6 +123,9 @@
     <ClInclude Include="src\Monstera\Renderer\Shader.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\Texture.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\VertexArray.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
@@ -127,6 +139,12 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1389,7 +1407,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Monstera\Core\Timestep.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Monstera\Application.cpp">
@@ -1428,6 +1448,9 @@
     <ClCompile Include="src\Monstera\Renderer\Shader.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monstera\Renderer\Texture.cpp">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\VertexArray.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
@@ -1438,6 +1461,12 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -1451,6 +1480,9 @@
     </ClCompile>
     <ClCompile Include="src\mdpch.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

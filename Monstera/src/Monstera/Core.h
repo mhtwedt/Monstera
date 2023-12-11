@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef MD_PLATFORM_WINDOWS
 	#if MD_DYNAMIC_LINK
 		#ifdef MD_BUILD_DLL
@@ -33,3 +35,13 @@
 #define BIT(x) (1 << x)
 
 #define MD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Monstera {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}

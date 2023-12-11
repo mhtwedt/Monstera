@@ -19,6 +19,7 @@ IncludeDir["GLFW"]  = "Monstera/vendor/GLFW/include"
 IncludeDir["Glad"]  = "Monstera/vendor/Glad/include"
 IncludeDir["ImGui"] = "Monstera/vendor/imgui"
 IncludeDir["glm"] = "Monstera/vendor/glm"
+IncludeDir["stb_image"] = "Monstera/vendor/stb_image"
 
 group "Dependencies"
 	include "Monstera/vendor/GLFW"
@@ -45,6 +46,8 @@ project "Monstera"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 
@@ -62,7 +65,8 @@ project "Monstera"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

@@ -26,6 +26,7 @@
 #include "Monstera/Renderer/Buffer.h"
 #include "Monstera/Renderer/VertexArray.h"
 #include "Monstera/Renderer/Shader.h"
+#include "Monstera/Renderer/Texture.h"
 
 #include "Monstera/Renderer/OrthographicCamera.h"
 // ------------------------------

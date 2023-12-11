@@ -23,7 +23,7 @@ namespace Monstera
 		// meaning we dont have to delete the window ourselves when the application terminates?
 		// "Application is a singlton, meaning we only have one application for our application so this is fine?"
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		m_ImGuiLayer = new ImGuiLayer();
