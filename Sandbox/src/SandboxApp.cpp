@@ -122,7 +122,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Monstera::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = (Monstera::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc));
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -157,48 +157,18 @@ public:
 		)";
 
 
-		m_FlatColorShader.reset(Monstera::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
+		m_FlatColorShader = (Monstera::Shader::Create("flatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
+		auto  textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;		
-
-			in vec2 v_TexCoord;
-				
-			uniform sampler2D u_Texture;			
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-
-		m_TextureShader.reset(Monstera::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = Monstera::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogoTexture = Monstera::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Monstera::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Monstera::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
+		std::dynamic_pointer_cast<Monstera::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Monstera::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
 
@@ -247,8 +217,13 @@ public:
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		Monstera::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Monstera::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		m_ChernoLogoTexture->Bind();
+		Monstera::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
 		//  Monstera::Renderer::Submit(m_Shader, m_VertexArray);
@@ -275,13 +250,14 @@ public:
 
 
 private:
+	Monstera::ShaderLibrary m_ShaderLibrary;
 	Monstera::Ref<Monstera::Shader> m_Shader;
 	Monstera::Ref<Monstera::VertexArray> m_VertexArray;
 
-	Monstera::Ref<Monstera::Shader> m_FlatColorShader, m_TextureShader;
+	Monstera::Ref<Monstera::Shader> m_FlatColorShader;
 	Monstera::Ref<Monstera::VertexArray> m_SquareVA;
 
-	Monstera::Ref<Monstera::Texture2D> m_Texture;
+	Monstera::Ref<Monstera::Texture2D> m_Texture, m_ChernoLogoTexture;
 
 	Monstera::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
