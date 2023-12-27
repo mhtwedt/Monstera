@@ -3,7 +3,7 @@
 #include "Core.h"
 #include "Window.h"
 
-#include "Monstera/LayerStack.h"
+#include "Monstera/Core/LayerStack.h"
 #include "Monstera/Events/Event.h"
 #include "Monstera/Events/ApplicationEvent.h"
 
@@ -32,12 +32,15 @@ namespace Monstera {
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+
 
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
+		bool m_Minimized = false;
 
 		LayerStack m_LayerStack;
 		float m_LastFrameTime;

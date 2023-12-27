@@ -144,31 +144,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Monstera.h" />
-    <ClInclude Include="src\Monstera\Application.h" />
-    <ClInclude Include="src\Monstera\Core.h" />
+    <ClInclude Include="src\Monstera\Core\Application.h" />
+    <ClInclude Include="src\Monstera\Core\Core.h" />
+    <ClInclude Include="src\Monstera\Core\EntryPoint.h" />
+    <ClInclude Include="src\Monstera\Core\Input.h" />
+    <ClInclude Include="src\Monstera\Core\KeyCodes.h" />
+    <ClInclude Include="src\Monstera\Core\Layer.h" />
+    <ClInclude Include="src\Monstera\Core\LayerStack.h" />
+    <ClInclude Include="src\Monstera\Core\Log.h" />
+    <ClInclude Include="src\Monstera\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Monstera\Core\Timestep.h" />
-    <ClInclude Include="src\Monstera\EntryPoint.h" />
+    <ClInclude Include="src\Monstera\Core\Window.h" />
     <ClInclude Include="src\Monstera\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Monstera\Events\Event.h" />
     <ClInclude Include="src\Monstera\Events\KeyEvent.h" />
     <ClInclude Include="src\Monstera\Events\MouseEvent.h" />
     <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Monstera\Input.h" />
-    <ClInclude Include="src\Monstera\KeyCodes.h" />
-    <ClInclude Include="src\Monstera\Layer.h" />
-    <ClInclude Include="src\Monstera\LayerStack.h" />
-    <ClInclude Include="src\Monstera\Log.h" />
-    <ClInclude Include="src\Monstera\MouseButtonCodes.h" />
     <ClInclude Include="src\Monstera\Renderer\Buffer.h" />
     <ClInclude Include="src\Monstera\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Monstera\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Monstera\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Monstera\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Monstera\Renderer\Renderer.h" />
     <ClInclude Include="src\Monstera\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Monstera\Renderer\Shader.h" />
     <ClInclude Include="src\Monstera\Renderer\Texture.h" />
     <ClInclude Include="src\Monstera\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Monstera\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -597,14 +598,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Monstera\Application.cpp" />
+    <ClCompile Include="src\Monstera\Core\Application.cpp" />
+    <ClCompile Include="src\Monstera\Core\Layer.cpp" />
+    <ClCompile Include="src\Monstera\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Monstera\Core\Log.cpp" />
     <ClCompile Include="src\Monstera\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Monstera\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Monstera\Layer.cpp" />
-    <ClCompile Include="src\Monstera\LayerStack.cpp" />
-    <ClCompile Include="src\Monstera\Log.cpp" />
     <ClCompile Include="src\Monstera\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Monstera\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Monstera\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Monstera\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Monstera\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Monstera\Renderer\RendererAPI.cpp" />

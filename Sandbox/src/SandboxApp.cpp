@@ -12,7 +12,7 @@ class ExampleLayer : public Monstera::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f, 0.0f, 0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
 		// Create Vertex Array
 		m_VertexArray.reset(Monstera::VertexArray::Create());
@@ -174,31 +174,18 @@ public:
 
 	void OnUpdate(Monstera::Timestep ts) override
 	{
+		// Update
+		m_CameraController.OnUpdate(ts);
+
+		// Render
 		MD_TRACE("Delta time: {0}s [{1}ms]", ts.GetSeconds(), ts.GetMilliseconds());
-
-		if (Monstera::Input::IsKeyPressed(MD_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-		else if (Monstera::Input::IsKeyPressed(MD_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		if (Monstera::Input::IsKeyPressed(MD_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (Monstera::Input::IsKeyPressed(MD_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (Monstera::Input::IsKeyPressed(MD_KEY_Q))
-			m_CameraRotation += m_CameraRotateSpeed * ts;
-		else if (Monstera::Input::IsKeyPressed(MD_KEY_E))
-			m_CameraRotation -= m_CameraRotateSpeed * ts;
 
 
 		Monstera::RenderCommand::SetClearColor({ 0.2f, 0.2f, 0.2f, 1 });
 		Monstera::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
 
-
-		Monstera::Renderer::BeginScene(m_Camera);
+		Monstera::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -242,9 +229,17 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Monstera::Event& event) override
+	void OnEvent(Monstera::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
 
+		if (e.GetEventType() == Monstera::EventType::WindowResize)
+		{
+			auto& re = (Monstera::WindowResizeEvent&)e;
+
+		//	float zoom = (float)re.GetWidth() / 1280.0f;
+		//	m_CameraController.SetZoomLevel(zoom);
+		}
 	}
 
 
@@ -259,12 +254,8 @@ private:
 
 	Monstera::Ref<Monstera::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-	Monstera::OrthographicCamera m_Camera;
+	Monstera::OrthographicCameraController m_CameraController;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0;
-	float m_CameraRotateSpeed = 180.0f;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };

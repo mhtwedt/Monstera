@@ -1,7 +1,7 @@
 #include "mdpch.h"
 #include "WindowsInput.h"
 
-#include "Monstera/Application.h"
+#include "Monstera/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 // This is tied to GLFW

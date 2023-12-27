@@ -6,15 +6,17 @@
 
 #include <stdio.h>
 
-#include "Monstera/Application.h"
-#include "Monstera/Layer.h"
-#include "Monstera/Log.h"
+#include "Monstera/Core/Application.h"
+#include "Monstera/Core/Layer.h"
+#include "Monstera/Core/Log.h"
 
 #include "Monstera/Core/Timestep.h"
 
-#include "Monstera/Input.h"
-#include "Monstera/MouseButtonCodes.h"
-#include "Monstera/KeyCodes.h"
+#include "Monstera/Core/Input.h"
+#include "Monstera/Core/MouseButtonCodes.h"
+#include "Monstera/Core/KeyCodes.h"
+
+#include "Monstera/Renderer/OrthographicCameraController.h"
 
 #include "Monstera/ImGui/ImGuiLayer.h"
 
@@ -34,5 +36,5 @@
 
 
 // --- Entry Point---------------
-#include "Monstera/EntryPoint.h"
+#include "Monstera/Core/EntryPoint.h"
 // ------------------------------

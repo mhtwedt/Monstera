@@ -69,6 +69,7 @@ namespace Monstera {
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
+				MD_CORE_INFO("{0}, {1}", width, height);
 				data.EventCallback(event);
 			});
 

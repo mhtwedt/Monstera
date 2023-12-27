@@ -57,17 +57,38 @@
     <ClInclude Include="src\Monstera.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Monstera\Application.h">
-      <Filter>src\Monstera</Filter>
+    <ClInclude Include="src\Monstera\Core\Application.h">
+      <Filter>src\Monstera\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Monstera\Core.h">
-      <Filter>src\Monstera</Filter>
+    <ClInclude Include="src\Monstera\Core\Core.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\EntryPoint.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\Input.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\KeyCodes.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\Layer.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\LayerStack.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\Log.h">
+      <Filter>src\Monstera\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Core\MouseButtonCodes.h">
+      <Filter>src\Monstera\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Core\Timestep.h">
       <Filter>src\Monstera\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Monstera\EntryPoint.h">
-      <Filter>src\Monstera</Filter>
+    <ClInclude Include="src\Monstera\Core\Window.h">
+      <Filter>src\Monstera\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Events\ApplicationEvent.h">
       <Filter>src\Monstera\Events</Filter>
@@ -84,24 +105,6 @@
     <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h">
       <Filter>src\Monstera\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Monstera\Input.h">
-      <Filter>src\Monstera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Monstera\KeyCodes.h">
-      <Filter>src\Monstera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Monstera\Layer.h">
-      <Filter>src\Monstera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Monstera\LayerStack.h">
-      <Filter>src\Monstera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Monstera\Log.h">
-      <Filter>src\Monstera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Monstera\MouseButtonCodes.h">
-      <Filter>src\Monstera</Filter>
-    </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\Buffer.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
@@ -109,6 +112,9 @@
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\OrthographicCamera.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\OrthographicCameraController.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\VertexArray.h">
       <Filter>src\Monstera\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Monstera\Window.h">
-      <Filter>src\Monstera</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1412,8 +1415,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Monstera\Application.cpp">
-      <Filter>src\Monstera</Filter>
+    <ClCompile Include="src\Monstera\Core\Application.cpp">
+      <Filter>src\Monstera\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Core\Layer.cpp">
+      <Filter>src\Monstera\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Core\LayerStack.cpp">
+      <Filter>src\Monstera\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Core\Log.cpp">
+      <Filter>src\Monstera\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\ImGui\ImGuiBuild.cpp">
       <Filter>src\Monstera\ImGui</Filter>
@@ -1421,19 +1433,13 @@
     <ClCompile Include="src\Monstera\ImGui\ImGuiLayer.cpp">
       <Filter>src\Monstera\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Monstera\Layer.cpp">
-      <Filter>src\Monstera</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Monstera\LayerStack.cpp">
-      <Filter>src\Monstera</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Monstera\Log.cpp">
-      <Filter>src\Monstera</Filter>
-    </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\Buffer.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\RenderCommand.cpp">

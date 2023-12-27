@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "Monstera/Input.h"
+#include "Monstera/Core/Input.h"
 
 namespace Monstera {
 

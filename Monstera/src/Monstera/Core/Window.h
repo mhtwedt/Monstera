@@ -2,7 +2,7 @@
 
 #include "mdpch.h"
 
-#include "Monstera/Core.h"
+#include "Monstera/Core/Core.h"
 #include "Monstera/Events/Event.h"
 
 namespace Monstera

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Monstera/Window.h"
+#include "Monstera/Core/Window.h"
 #include "Monstera/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Monstera/Core.h"
+#include "Monstera/Core/Core.h"
 #include "Monstera/Core/Timestep.h"
 #include "Monstera/Events/Event.h"
 

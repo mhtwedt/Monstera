@@ -1,7 +1,7 @@
 #pragma once
 
 #include "mdpch.h"
-#include "Monstera/Core.h"
+#include "Monstera/Core/Core.h"
 
 
 namespace Monstera
@@ -97,21 +97,22 @@ namespace Monstera
 
 	class EventDispatcher
 	{
-		template <typename T>
-		using EventFn = std::function<bool(T&)>;
-	public:
+
+public:
 		EventDispatcher(Event& event)
 			: m_Event(event)
 		{
 
 		}
 
-		template<typename T>
-		bool Dispatch(EventFn<T> func)
+		// pull request before Camera Controllers episode so that dispatch was not a standard function????
+		// F will be deduced by the compiler
+		template<typename T, typename F>
+		bool Dispatch(const F& func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.Handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;
