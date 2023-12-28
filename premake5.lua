@@ -83,7 +83,6 @@ project "Monstera"
 
 		defines
 		{
-			"MD_PLATFORM_WINDOWS",
 			"MD_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
@@ -142,11 +141,6 @@ project "Sandbox"
 	filter "system:windows"
 		staticruntime "On"
 		systemversion "latest"
-
-		defines
-		{
-			"MD_PLATFORM_WINDOWS"
-		}
 
 	filter "configurations:Debug"
 		defines "MD_DEBUG"
