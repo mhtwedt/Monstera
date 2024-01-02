@@ -32,7 +32,7 @@ namespace Monstera {
 
 	private:
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		Scope<GraphicsContext> m_Context;
 
 		// struct could be used to pass window data to glfw
 		// more concise than passing the whole class

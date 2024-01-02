@@ -24,16 +24,20 @@ namespace Monstera {
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		MD_PROFILE_FUNCTION();
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		MD_PROFILE_FUNCTION();
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		MD_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -41,9 +45,10 @@ namespace Monstera {
 		MD_CORE_INFO("Creating Window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 
-
 		if (!s_GLFWInitialized)
 		{
+			MD_PROFILE_SCOPE("glfwInit");
+
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
 			MD_CORE_ASSERT(success, "Could not initialize GLFW!");
@@ -52,9 +57,13 @@ namespace Monstera {
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		{
+			MD_PROFILE_SCOPE("glfwCreateWindow");
 
-		m_Context = new OpenGLContext(m_Window);
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		}
+
+		m_Context = CreateScope<OpenGLContext>(m_Window);
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -69,7 +78,7 @@ namespace Monstera {
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
-				MD_CORE_INFO("{0}, {1}", width, height);
+				MD_CORE_INFO("WindowsWindow.glfwSetWindowSizeCallback: {0}, {1}", width, height);
 				data.EventCallback(event);
 			});
 
@@ -158,17 +167,23 @@ namespace Monstera {
 
 	void WindowsWindow::Shutdown()
 	{
+		MD_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		MD_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		MD_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

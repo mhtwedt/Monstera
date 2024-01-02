@@ -2,12 +2,21 @@
 #include "OpenGLRendererAPI.h"
 
 #include <glad/glad.h>
+
 namespace Monstera
 {
 	void OpenGLRendererAPI::Init()
 	{
+		// For the most part we want to profile the renderer separately using a renerer specific macro
+		// like this:#define MD_PROFILE_RENDERER_FUNCTION()
+
+		MD_PROFILE_FUNCTION();
+
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
@@ -28,6 +37,7 @@ namespace Monstera
 	void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray)
 	{
 		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 }

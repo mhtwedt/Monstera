@@ -23,6 +23,8 @@
 
 // --- Renderer ------------------
 #include "Monstera/Renderer/Renderer.h"
+#include "Monstera/Renderer/Renderer2D.h"
+
 #include "Monstera/Renderer/RenderCommand.h"
 
 #include "Monstera/Renderer/Buffer.h"
@@ -31,10 +33,4 @@
 #include "Monstera/Renderer/Texture.h"
 
 #include "Monstera/Renderer/OrthographicCamera.h"
-// ------------------------------
-
-
-
-// --- Entry Point---------------
-#include "Monstera/Core/EntryPoint.h"
 // ------------------------------

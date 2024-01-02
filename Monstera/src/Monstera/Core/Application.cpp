@@ -17,6 +17,8 @@ namespace Monstera
 	
 	Application::Application()
 	{
+		MD_PROFILE_FUNCTION();
+
 		MD_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 		// because this is an explicit constructor, we have to use std::unique_ptr<Window>(Window::Create());
@@ -34,23 +36,31 @@ namespace Monstera
 
 	Application::~Application()
 	{
+		MD_PROFILE_FUNCTION();
 
+		Renderer::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer)
 	{
+		MD_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
+		MD_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverLay(layer);
 		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+		MD_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -68,26 +78,37 @@ namespace Monstera
 
 	void Application::Run()
 	{
+		MD_PROFILE_FUNCTION();
+
 		// Event testing
 		// WindowResizeEvent e(1280, 720);
 		// MD_TRACE(e);
 
 		while (m_Running)
 		{
+			MD_PROFILE_SCOPE("Run Loop");
+
 			float time = (float)glfwGetTime(); // Platform::GetTime
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized)
 			{
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+				{
+					MD_PROFILE_SCOPE("LayerStack iterating OnUpdate");
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
+
+				m_ImGuiLayer->Begin();
+				{
+					MD_PROFILE_SCOPE("LayerStack iterating OnImGuiRener");
+					for (Layer* layer : m_LayerStack)
+						layer->OnImGuiRender();
+				}
+				m_ImGuiLayer->End();
 			}
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
 
 
 		//	auto [x, y] = Input::GetMousePosition();
@@ -109,6 +130,8 @@ namespace Monstera
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		MD_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

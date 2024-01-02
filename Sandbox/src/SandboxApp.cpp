@@ -1,4 +1,5 @@
 #include <Monstera.h>
+#include <Monstera/Core/EntryPoint.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -7,6 +8,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Monstera::Layer
 {
@@ -15,7 +17,7 @@ public:
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
 		// Create Vertex Array
-		m_VertexArray.reset(Monstera::VertexArray::Create());
+		m_VertexArray = (Monstera::VertexArray::Create());
 
 		// Things necessary for a renderer
 		// Vertex Array
@@ -55,7 +57,7 @@ public:
 
 
 		//Create a square
-		m_SquareVA.reset(Monstera::VertexArray::Create());
+		m_SquareVA = Monstera::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,
@@ -257,7 +259,7 @@ private:
 	Monstera::OrthographicCameraController m_CameraController;
 	glm::vec3 m_CameraPosition;
 
-	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
+	glm::vec3 m_SquareColor = { 0.2f, 0.4f, 0.8f };
 };
 
 class Sandbox : public Monstera::Application
@@ -265,7 +267,8 @@ class Sandbox : public Monstera::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		// PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()

@@ -9,6 +9,24 @@ namespace Monstera {
 
 
 
+	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:	MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLTexture2D>(width, height);
+
+			/* can adjust cases for supported platforms
+			#if MD_PLATFORM_WINDOWS
+				case RendererAPI::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
+			#endif
+			*/
+		}
+
+		MD_CORE_ASSERT(false, "Unknown Renderer API!");
+		return nullptr;
+	}
+
 	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
 
@@ -16,7 +34,7 @@ namespace Monstera {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:	MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLTexture2D>(path);
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLTexture2D>(path);
 
 			/* can adjust cases for supported platforms
 			#if MD_PLATFORM_WINDOWS

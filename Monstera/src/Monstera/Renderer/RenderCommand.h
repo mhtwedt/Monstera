@@ -9,6 +9,7 @@ namespace Monstera {
 	public:
 		inline static void Init()
 		{
+
 			s_RendererAPI->Init();
 		}
 
@@ -32,7 +33,7 @@ namespace Monstera {
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
 	private:
-		static RendererAPI* s_RendererAPI;
+		static Scope<RendererAPI> s_RendererAPI;
 
 	};
 
