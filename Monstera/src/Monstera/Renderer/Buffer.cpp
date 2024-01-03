@@ -13,13 +13,33 @@
 
 namespace Monstera
 {
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:		MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLVertexBuffer>(size);
 
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+			/* can adjust cases for supported platforms
+			#if MD_PLATFORM_WINDOWS
+				case RendererAPI::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
+			#endif
+			*/
+		}
+
+		MD_CORE_ASSERT(false, "Unknown Renderer API!");
+		return nullptr;
+
+		return Ref<VertexBuffer>();
+	}
+
+
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:		MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::API::OpenGL:	return CreateRef<OpenGLVertexBuffer>(vertices, size);
 
 			/* can adjust cases for supported platforms
 			#if MD_PLATFORM_WINDOWS
@@ -32,12 +52,12 @@ namespace Monstera
 		 return nullptr;
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:		MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:	return new OpenGLIndexBuffer(indices, size);
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLIndexBuffer>(indices, count);
 
 			/* can adjust cases for supported platforms
 			#if MD_PLATFORM_WINDOWS
@@ -49,5 +69,7 @@ namespace Monstera
 		MD_CORE_ASSERT(false, "Unknown Renderer API!");
 		return nullptr;
 	}
+
+
 
 }

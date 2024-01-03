@@ -11,7 +11,7 @@ namespace Monstera
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:	MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLShader>(filepath);
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLShader>(filepath);
 
 			/* can adjust cases for supported platforms
 			#if MD_PLATFORM_WINDOWS
@@ -28,7 +28,7 @@ namespace Monstera
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:	MD_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 
 			/* can adjust cases for supported platforms
 			#if MD_PLATFORM_WINDOWS

@@ -33,8 +33,7 @@ public:
 			 0.5f, -0.5f,  0.0f,  0.0f,  0.0f,  0.8f,  1.0f
 		};
 
-		Monstera::Ref<Monstera::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Monstera::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Monstera::Ref<Monstera::VertexBuffer> vertexBuffer = Monstera::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		// Set Layout
 		Monstera::BufferLayout layout = {
@@ -50,8 +49,7 @@ public:
 			0, 1, 2
 		};
 
-		Monstera::Ref<Monstera::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Monstera::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Monstera::Ref<Monstera::IndexBuffer> indexBuffer = Monstera::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
@@ -67,8 +65,7 @@ public:
 
 		};
 
-		Monstera::Ref<Monstera::VertexBuffer> squareVB;
-		squareVB.reset(Monstera::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Monstera::Ref<Monstera::VertexBuffer> squareVB = Monstera::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 
 
 		squareVB->SetLayout({
@@ -82,8 +79,7 @@ public:
 		uint32_t squareIndices[6] = {
 			0, 1, 2, 2, 3, 0
 		};
-		Monstera::Ref<Monstera::IndexBuffer> squareIB;
-		squareIB.reset(Monstera::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Monstera::Ref<Monstera::IndexBuffer> squareIB = Monstera::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 
 
 		m_SquareVA->SetIndexBuffer(squareIB);

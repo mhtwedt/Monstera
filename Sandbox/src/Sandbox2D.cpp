@@ -43,26 +43,20 @@ void Sandbox2D::OnUpdate(Monstera::Timestep ts)
 
 
 	{
+		static float rotation = 0.0f;
+		rotation += ts * 50.0f;
+
 		MD_PROFILE_SCOPE("Sandbox2D Renderer Draw");
 		Monstera::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-		Monstera::Renderer2D::EndScene();
-
-		Monstera::Renderer2D::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-30.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
+		Monstera::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, -1*rotation, { 0.8f, 0.2f, 0.3f, 1.0f });
+		Monstera::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 		Monstera::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-		Monstera::Renderer2D::DrawRotatedQuad({ 0.5f, 0.5f ,-0.1f }, { 10.0f, 10.0f }, glm::radians(30.0f), m_CheckerboardTexture, 10.0f, glm::vec4(0.9f, 0.8f, 1.0f, 1.0f));
+		Monstera::Renderer2D::DrawRotatedQuad({ -0.5f, -0.5f}, { 1.0f, 1.0f }, rotation, m_CheckerboardTexture, 20.0f);
+		Monstera::Renderer2D::DrawQuad({0.0f, 0.0f, 0.0f}, {10.0f, 10.0f}, m_CheckerboardTexture, 10.0f); // not sure why having a z pos of 0.0 is working
 
 		Monstera::Renderer2D::EndScene();
 	}
-	//glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-
-	// TODO Add these functions: Shader::SetMat4, Shader::SetFloat4
-	// std::dynamic_pointer_cast<Monstera::OpenGLShader>(m_FlatColorShader)->Bind();
-	// std::dynamic_pointer_cast<Monstera::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
-	// 
-	// Monstera::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
 }
 
 void Sandbox2D::OnImGuiRender()
