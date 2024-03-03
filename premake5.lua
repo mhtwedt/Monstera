@@ -20,11 +20,15 @@ IncludeDir["Glad"]  = "Monstera/vendor/Glad/include"
 IncludeDir["ImGui"] = "Monstera/vendor/imgui"
 IncludeDir["glm"] = "Monstera/vendor/glm"
 IncludeDir["stb_image"] = "Monstera/vendor/stb_image"
+IncludeDir["entt"] = "Monstera/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "Monstera/vendor/yaml-cpp/include"
+
 
 group "Dependencies"
 	include "Monstera/vendor/GLFW"
 	include "Monstera/vendor/Glad"
 	include "Monstera/vendor/imgui"
+	include "Monstera/vendor/yaml-cpp"
 --	include "Monstera/vendor/glm"
 group ""
 
@@ -66,7 +70,9 @@ project "Monstera"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml_cpp}"
 	}
 
 	links
@@ -74,6 +80,7 @@ project "Monstera"
 		"GLFW",
 		"Glad",
 		"ImGui",
+		"yaml-cpp",
 		"opengl32.lib",
 		"dwmapi.lib"
 	}
@@ -109,8 +116,8 @@ project "Monstera"
 	--	staticruntime "off"
 		runtime "Release"
 
-project "Sandbox"
-	location "Sandbox"
+project "Monstera-Editor"
+	location "Monstera-Editor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++20"
@@ -130,7 +137,8 @@ project "Sandbox"
 		"Monstera/vendor/spdlog/include",
 		"Monstera/src",
 		"Monstera/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -162,3 +170,58 @@ project "Sandbox"
 		optimize "on"
 	--	staticruntime "off"
 		runtime "Release"
+
+		project "Sandbox"
+		location "Sandbox"
+		kind "ConsoleApp"
+		language "C++"
+		cppdialect "C++20"
+		staticruntime "on"
+	
+		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	
+		files
+		{
+			"%{prj.name}/src/**.h",
+			"%{prj.name}/src/**.cpp"
+		}
+	
+		includedirs
+		{
+			"Monstera/vendor/spdlog/include",
+			"Monstera/src",
+			"Monstera/vendor",
+			"%{IncludeDir.glm}",
+			"%{IncludeDir.entt}"
+		}
+	
+		links
+		{
+			"Monstera"
+		}
+	
+		filter "system:windows"
+			staticruntime "On"
+			systemversion "latest"
+	
+		filter "configurations:Debug"
+			defines "MD_DEBUG"
+		--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
+			symbols "on"
+		--	staticruntime "off"
+			runtime "Debug"
+	
+		filter "configurations:Release"
+			defines "MD_RELEASE"
+		--	buildoptions "/MD" -- This functionality is replaced by the runtime command
+			optimize "on"
+		--	staticruntime "off"
+			runtime "Release"
+	
+		filter "configurations:Dist"
+			defines "MD_DIST"
+		--	buildoptions "/MD" -- This functionality is replaced by the runtime command
+			optimize "on"
+		--	staticruntime "off"
+			runtime "Release"

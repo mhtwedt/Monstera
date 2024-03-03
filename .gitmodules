@@ -12,3 +12,6 @@
 	path = Monstera/vendor/glm
 	url = https://github.com/g-truc/glm
 	branch = master
+[submodule "Monstera/vendor/yaml-cpp"]
+	path = Monstera/vendor/yaml-cpp
+	url = https://github.com/mhtwedt/yaml-cpp

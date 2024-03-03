@@ -15,6 +15,7 @@ namespace Monstera {
 
 		virtual uint32_t getWidth() const override { return m_Width;}
 		virtual uint32_t getHeight() const { return m_Height; };
+		virtual uint32_t GetRendererID() const override { return m_RendererID; }
 
 		virtual void SetData(void* data, uint32_t size) override;
 

@@ -1,5 +1,29 @@
 #pragma once
 
+namespace Monstera
+{
+	typedef enum class KeyCode : uint16_t
+	{
+		Space			= 32,
+		Apostrophe		= 39,
+		Comma			= 44,
+		Minus			= 45,
+		Period			= 46,
+		Slash			= 47,
+
+		D0				= 48, /* 0 */
+		D1				= 49, /* 1 */
+		D2				= 50, /* 2 */
+		D3				= 51, /* 3 */
+		D4				= 52, /* 4 */
+		D5				= 53, /* 5 */
+		D6				= 54, /* 6 */
+		D7				= 55, /* 7 */
+		D8				= 56, /* 8 */
+		D9				= 57  /* 9 */
+	};
+}
+
 //Modified from glfw3.h
 // We have two options - we could change keycodes at compile time for if someone wanted to use win32 keycodes vs glfw
 // That would use something like an #ifdef - but chrno doesn't like it because if you moved something post compile time over - it might break things

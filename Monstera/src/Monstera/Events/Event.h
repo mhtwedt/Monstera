@@ -80,6 +80,7 @@ namespace Monstera
 	{
 		friend class EventDispatcher;
 	public:
+		virtual ~Event() = default;
 
 		bool Handled = false;
 

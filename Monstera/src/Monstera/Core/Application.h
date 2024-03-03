@@ -17,7 +17,7 @@ namespace Monstera {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Monstera App");
 		virtual ~Application();
 
 		void Run();
@@ -27,8 +27,12 @@ namespace Monstera {
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
-		inline static Application& Get() { return *s_Instance; }
-		inline Window& GetWindow() { return *m_Window; }
+		static Application& Get() { return *s_Instance; }
+		Window& GetWindow() { return *m_Window; }
+
+		void Close();
+
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);

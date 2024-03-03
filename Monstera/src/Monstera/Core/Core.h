@@ -62,6 +62,7 @@
 #endif // End of DLL support
 
 
+// TODO: Make this macro able to take in no arguments except condition
 #ifdef MD_DEBUG
 	#define MD_ENABLE_ASSERTS
 #endif
@@ -80,7 +81,8 @@
 // used EventCategory flags in Event.h
 #define BIT(x) (1 << x)
 
-#define MD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+// #define MD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+#define MD_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) {return this->fn(std::forward<decltype(args)>(args)...); }
 
 namespace Monstera {
 

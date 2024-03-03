@@ -3,6 +3,9 @@
 !vendor/bin/premake/
 bin-int/
 
+# Profiling
+**.json
+
 # Visual Studio files and folder
 .vs/
 **.sln

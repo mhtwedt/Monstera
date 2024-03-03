@@ -2,6 +2,7 @@
 
 #include "Monstera.h"
 
+#include "ParticleSystem.h"
 
 class Sandbox2D : public Monstera::Layer
 {
@@ -25,7 +26,10 @@ private:
 	Monstera::Ref<Monstera::Shader> m_FlatColorShader;
 
 	Monstera::Ref<Monstera::Texture2D> m_CheckerboardTexture;
-	
+	Monstera::Ref<Monstera::Texture2D> m_Spritesheet;
+	Monstera::Ref<Monstera::SubTexture2D> m_TextureStairs, m_TextureBarrel, m_TextureTree;
+
+
 	struct ProfileResult
 	{
 		const char* Name;
@@ -37,6 +41,9 @@ private:
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
 
+	ParticleSystem m_ParticleSystem;
+	ParticleProps m_Particle;
 
-
+	uint32_t m_MapWidth, m_MapHeight;
+	std::unordered_map<char, Monstera::Ref<Monstera::SubTexture2D>> s_TextureMap;
 };

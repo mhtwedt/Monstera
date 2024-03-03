@@ -1,5 +1,5 @@
 #include "mdpch.h"
-#include "WindowsInput.h"
+#include "Monstera/Core/Input.h"
 
 #include "Monstera/Core/Application.h"
 #include <GLFW/glfw3.h>
@@ -7,9 +7,7 @@
 // This is tied to GLFW
 namespace Monstera
 {
-	Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
-
-	bool WindowsInput::IsKeyPressedImpl(int keycode)
+	bool Input::IsKeyPressed(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -18,7 +16,7 @@ namespace Monstera
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::IsMouseButtonPressedImpl(int button)
+	bool Input::IsMouseButtonPressed(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -27,7 +25,7 @@ namespace Monstera
 		return state == GLFW_PRESS;
 	}
 
-	std::pair<float, float> WindowsInput::GetMousePositionImpl()
+	std::pair<float, float> Input::GetMousePosition()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -38,15 +36,15 @@ namespace Monstera
 	}
 
 
-	float WindowsInput::GetMouseXImpl()
+	float Input::GetMouseX()
 	{
-		auto [x, y] = GetMousePositionImpl(); // Cool thing in c++ 17
+		auto [x, y] = GetMousePosition(); // Cool thing in c++ 17
 		return x;
 	}
 
-	float WindowsInput::GetMouseYImpl()
+	float Input::GetMouseY()
 	{
-		auto [x, y] = GetMousePositionImpl(); // Cool thing in c++ 17
+		auto [x, y] = GetMousePosition(); // Cool thing in c++ 17
 		return y;
 	}
 }

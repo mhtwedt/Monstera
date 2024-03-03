@@ -10,6 +10,9 @@
     <Filter Include="src\Monstera\Core">
       <UniqueIdentifier>{9DFF6947-0916-68DD-528D-F3FEBEE23865}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Monstera\Debug">
+      <UniqueIdentifier>{5B4EB634-4732-778A-B092-71DD9C95610C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Monstera\Events">
       <UniqueIdentifier>{696C0ACF-D5CD-E7DC-5E3B-2E8FCA9B1E9C}</UniqueIdentifier>
     </Filter>
@@ -18,6 +21,9 @@
     </Filter>
     <Filter Include="src\Monstera\Renderer">
       <UniqueIdentifier>{6B3952B2-D7A5-0DAD-A099-A50A0CC52F15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Monstera\Scene">
+      <UniqueIdentifier>{02B1C435-EE94-858B-57F5-7FDE43F86F0D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -90,6 +96,9 @@
     <ClInclude Include="src\Monstera\Core\Window.h">
       <Filter>src\Monstera\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Debug\Instrumentor.h">
+      <Filter>src\Monstera\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Events\ApplicationEvent.h">
       <Filter>src\Monstera\Events</Filter>
     </ClInclude>
@@ -108,6 +117,12 @@
     <ClInclude Include="src\Monstera\Renderer\Buffer.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\Camera.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\Framebuffer.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\GraphicsContext.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
@@ -123,10 +138,16 @@
     <ClInclude Include="src\Monstera\Renderer\Renderer.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\Renderer2D.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\RendererAPI.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\Shader.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\SubTexture2D.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\Texture.h">
@@ -135,10 +156,28 @@
     <ClInclude Include="src\Monstera\Renderer\VertexArray.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Scene\Components.h">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Scene\Entity.h">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Scene\Scene.h">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Scene\SceneCamera.h">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Scene\ScriptableEntity.h">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -1413,8 +1452,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Monstera\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Monstera\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Monstera\Core\Application.cpp">
@@ -1438,6 +1475,9 @@
     <ClCompile Include="src\Monstera\Renderer\Buffer.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monstera\Renderer\Framebuffer.cpp">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\OrthographicCamera.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
@@ -1450,10 +1490,16 @@
     <ClCompile Include="src\Monstera\Renderer\Renderer.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monstera\Renderer\Renderer2D.cpp">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\RendererAPI.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\Shader.cpp">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Renderer\SubTexture2D.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\Texture.cpp">
@@ -1462,10 +1508,22 @@
     <ClCompile Include="src\Monstera\Renderer\VertexArray.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monstera\Scene\Entity.cpp">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Scene\Scene.cpp">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Scene\SceneCamera.cpp">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1492,6 +1550,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Monstera\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

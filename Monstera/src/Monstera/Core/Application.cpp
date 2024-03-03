@@ -15,7 +15,7 @@ namespace Monstera
 	Application* Application::s_Instance = nullptr;
 
 	
-	Application::Application()
+	Application::Application(const std::string& name)
 	{
 		MD_PROFILE_FUNCTION();
 
@@ -25,7 +25,7 @@ namespace Monstera
 		// meaning we dont have to delete the window ourselves when the application terminates?
 		// "Application is a singlton, meaning we only have one application for our application so this is fine?"
 
-		m_Window = Scope<Window>(Window::Create());
+		m_Window = Scope<Window>(Window::Create(WindowProps(name)));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
 		Renderer::Init();
@@ -120,6 +120,11 @@ namespace Monstera
 			m_Window->OnUpdate();
 		}
 
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

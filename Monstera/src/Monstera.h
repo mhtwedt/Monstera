@@ -20,6 +20,10 @@
 
 #include "Monstera/ImGui/ImGuiLayer.h"
 
+#include "Monstera/Scene/Scene.h"
+#include "Monstera/Scene/Entity.h"
+#include "Monstera/Scene/ScriptableEntity.h"
+#include "Monstera/Scene/Components.h"
 
 // --- Renderer ------------------
 #include "Monstera/Renderer/Renderer.h"
@@ -28,9 +32,11 @@
 #include "Monstera/Renderer/RenderCommand.h"
 
 #include "Monstera/Renderer/Buffer.h"
+#include "Monstera/Renderer/Framebuffer.h"
 #include "Monstera/Renderer/VertexArray.h"
 #include "Monstera/Renderer/Shader.h"
 #include "Monstera/Renderer/Texture.h"
+#include "Monstera/Renderer/SubTexture2D.h"
 
 #include "Monstera/Renderer/OrthographicCamera.h"
 // ------------------------------
