@@ -1,0 +1,14 @@
+Scene: Untitled Scene
+Entities:
+  - Entity: 12345123451234
+    TagComponent:
+      Tag: Camera B
+  - Entity: 12345123451234
+    TagComponent:
+      Tag: Camera A
+  - Entity: 12345123451234
+    TagComponent:
+      Tag: Red Square
+  - Entity: 12345123451234
+    TagComponent:
+      Tag: Square

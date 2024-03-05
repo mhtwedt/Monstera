@@ -168,6 +168,9 @@
     <ClInclude Include="src\Monstera\Scene\SceneCamera.h">
       <Filter>src\Monstera\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Scene\SceneSerializer.h">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Scene\ScriptableEntity.h">
       <Filter>src\Monstera\Scene</Filter>
     </ClInclude>
@@ -1515,6 +1518,9 @@
       <Filter>src\Monstera\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Scene\SceneCamera.cpp">
+      <Filter>src\Monstera\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Scene\SceneSerializer.cpp">
       <Filter>src\Monstera\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">

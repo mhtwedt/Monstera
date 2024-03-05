@@ -6,6 +6,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Monstera/Scene/SceneSerializer.h"
+
 #include <chrono>
 
 static const uint32_t s_MapWidth = 24;
@@ -99,6 +101,9 @@ namespace Monstera {
 		m_SecondCamera.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
 		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+		SceneSerializer serializer(m_ActiveScene);
+		serializer.Serialize("assets/scenes/Example.monstera");
 
 	}
 
@@ -232,7 +237,7 @@ namespace Monstera {
 
 			ImGui::Begin("Stats");
 
-			auto stats = Monstera::Renderer2D::GetStats();
+			Monstera::Renderer2D::Statistics stats = Monstera::Renderer2D::GetStats();
 			ImGui::Text("Renderer2D Stats:");
 			ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 			ImGui::Text("Quad Count: %d", stats.QuadCount);
