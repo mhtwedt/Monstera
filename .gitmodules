@@ -18,6 +18,3 @@
 [submodule "Monstera/vendor/ImGuizmo"]
 	path = Monstera/vendor/ImGuizmo
 	url = https://github.com/mhtwedt/ImGuizmo
-[submodule "vendor/FFmpeg"]
-	path = vendor/FFmpeg
-	url = https://github.com/mhtwedt/FFmpeg
