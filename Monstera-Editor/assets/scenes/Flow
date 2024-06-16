@@ -1,0 +1,20 @@
+Scene: Untitled Scene
+Entities:
+  - Entity: 12345123451234
+    TagComponent:
+      Tag: Brown Square
+    TransformComponent:
+      Translation: [0, -0.699999988, 0.400000006]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.247058824, 0.125490203, 0.0627451017, 0.501960814]
+  - Entity: 12345123451234
+    TagComponent:
+      Tag: White Square
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [-1.04719758, 0, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [1, 1, 1, 0.501960814]

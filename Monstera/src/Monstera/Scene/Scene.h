@@ -1,6 +1,7 @@
 #pragma once
 
 #include "entt.hpp"
+#include "Monstera/Renderer/EditorCamera.h"
 
 #include "Monstera/Core/Timestep.h"
 
@@ -17,9 +18,11 @@ namespace Monstera {
 		Entity CreateEntity(const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 		void OnViewportResize(uint32_t width, uint32_t height);
 
+		Entity GetPrimaryCameraEntity();
 
 	private:
 		entt::registry m_Registry;
@@ -28,5 +31,6 @@ namespace Monstera {
 		friend class Entity;
 		friend class SceneSerializer;
 		friend class SceneHierarchyPanel;
+		friend class SceneStatisticsPanel; // This is for WIN
 	};
 }

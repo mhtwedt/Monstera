@@ -75,6 +75,7 @@ namespace Monstera {
 	public:
 		BufferLayout() {}
 
+		// BufferLayout(std::initializer_list<BufferElement> elements) // could be this line
 		BufferLayout(const std::initializer_list<BufferElement>& elements) 
 		: m_Elements(elements) 
 		{

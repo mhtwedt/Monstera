@@ -3,6 +3,8 @@
 #include "Monstera.h"
 #include "Panels/SceneHierarchyPanel.h"
 
+#include "Monstera/Renderer/EditorCamera.h" // Not needed?
+
 namespace Monstera
 {
 	class EditorLayer : public Layer
@@ -18,6 +20,12 @@ namespace Monstera
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event& e) override;
 
+	private:
+		bool OnKeyPressed(KeyPressedEvent& e);
+
+		void NewScene();
+		void OpenScene();
+		void SaveSceneAs();
 
 	private:
 		OrthographicCameraController m_CameraController;
@@ -34,6 +42,8 @@ namespace Monstera
 
 		bool m_PrimaryCamera = true;
 
+		EditorCamera m_EditorCamera;
+
 		Ref<Texture2D> m_CheckerboardTexture;
 		Ref<Texture2D> m_Spritesheet;
 		Ref<SubTexture2D> m_TextureStairs, m_TextureBarrel, m_TextureTree;
@@ -43,6 +53,8 @@ namespace Monstera
 		bool m_ViewportFocused = false, m_ViewportHovered = false;
 
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+
+		int m_ImGuizmoType = -1;
 
 		struct ProfileResult
 		{

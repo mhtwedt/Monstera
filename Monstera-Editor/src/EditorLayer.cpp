@@ -8,6 +8,13 @@
 
 #include "Monstera/Scene/SceneSerializer.h"
 
+#include "Monstera/Utils/PlatformUtils.h"
+
+#include "ImGuizmo.h"
+
+#include "Monstera/Math/Math.h"
+
+
 #include <chrono>
 
 static const uint32_t s_MapWidth = 24;
@@ -48,6 +55,8 @@ namespace Monstera {
 
 
 		m_ActiveScene = CreateRef<Scene>();
+
+		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
 #if 0
 		// Entt system
@@ -124,14 +133,18 @@ namespace Monstera {
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
-
+			m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
 
 		// Update
 		if (m_ViewportFocused)
+		{
 			m_CameraController.OnUpdate(ts);
+		}
+
+		m_EditorCamera.OnUpdate(ts);
 
 
 		// Render
@@ -143,7 +156,7 @@ namespace Monstera {
 
 				
 		// Update Scene
-		m_ActiveScene->OnUpdate(ts);
+		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 		m_Framebuffer->Unbind();
 
 	}
@@ -218,19 +231,20 @@ namespace Monstera {
 
 			if (ImGui::BeginMenuBar())
 			{
+				// Disabling fullscreen would allow the window to be moved to the front of other windows,
+				// which we can't undo at the moment without finer window depth/z control.
+				// ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistent);
+
 				if (ImGui::BeginMenu("File"))
 				{
+					if (ImGui::MenuItem("New", "Ctrl+N"))
+						NewScene();
 
-					if (ImGui::MenuItem("Serialize"))
-					{ 
-						SceneSerializer serializer(m_ActiveScene);
-						serializer.Serialize("assets/scenes/Example.monstera");
-					}
-					if (ImGui::MenuItem("Deserialize"))
-					{ 
-						SceneSerializer serializer(m_ActiveScene);
-						serializer.Deserialize("assets/scenes/Example.monstera");
-					}
+					if (ImGui::MenuItem("Open...", "Ctrl+O"))
+						OpenScene();
+					
+					if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+						SaveSceneAs();
 
 					// Disabling fullscreen would allow the window to be moved to the front of other windows,
 					// which we can't undo at the moment without finer window depth/z control.
@@ -262,8 +276,14 @@ namespace Monstera {
 			m_ViewportFocused = ImGui::IsWindowFocused();
 			m_ViewportHovered = ImGui::IsWindowHovered();
 
-			Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
-			
+			Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
+			/*
+			* possible answer from youtube
+			if(!ImGui::IsAnyItemActive())
+				layer->setBlockEvents(!vpFocused && !vpHovered);
+			else 
+				layer->setBlockEvents(!vpFocused || !vpHovered);
+		   */
 
 			ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 			if (m_ViewportSize != *(glm::vec2*)&viewportPanelSize && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
@@ -279,6 +299,58 @@ namespace Monstera {
 			uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 			ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
 
+
+			//Gizmos
+			Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
+			if (selectedEntity && m_ImGuizmoType != -1)
+			{
+				ImGuizmo::SetOrthographic(false);
+				ImGuizmo::SetDrawlist();
+				float windowWidth = (float)ImGui::GetWindowWidth();
+				float windowHeight = (float)ImGui::GetWindowHeight();
+				ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+
+				// Camera
+				// 
+				// auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
+				// const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
+				// const glm::mat4& cameraProjection = camera.GetProjection();
+				// glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+
+				// Editor camera
+				 const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
+				 glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
+
+
+				//Entity transform
+				auto& tc = selectedEntity.GetComponent<TransformComponent>();
+				glm::mat4 transform = tc.GetTransform();
+
+				//Snapping
+				bool snap = Input::IsKeyPressed(MD_KEY_LEFT_CONTROL);
+				float snapValue = 0.5f; // snap to 0.5m for translation / scale
+				if (m_ImGuizmoType == ImGuizmo::OPERATION::ROTATE)
+					snapValue = 45.0f; // snap to 45 degrees for rotation
+
+				float snapValues[3] = { snapValue, snapValue, snapValue };
+
+				ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), 
+					(ImGuizmo::OPERATION)m_ImGuizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform), 
+					nullptr, snap ? snapValues : nullptr);
+
+				if (ImGuizmo::IsUsing())
+				{
+					glm::vec3 translation, rotation, scale;
+					Math::DecomposeTransform(transform, translation, rotation, scale);
+
+					glm::vec3 deltaRotation = rotation - tc.Rotation;
+					tc.Translation = translation;
+					tc.Rotation += deltaRotation;
+					tc.Scale = scale;
+				}
+			}
+
+
 			ImGui::End();
 			ImGui::PopStyleVar();
 
@@ -291,5 +363,78 @@ namespace Monstera {
 	void EditorLayer::OnEvent(Event& e)
 	{
 		m_CameraController.OnEvent(e);
+		m_EditorCamera.OnEvent(e);
+
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<KeyPressedEvent>(MD_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+	}
+	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
+	{
+		//Shortcuts
+		if (e.GetRepeatCount() > 0)
+			return false;
+
+		bool ctrlPressed = Input::IsKeyPressed(MD_KEY_LEFT_CONTROL) || Input::IsKeyPressed(MD_KEY_RIGHT_CONTROL);
+		bool shiftPressed = Input::IsKeyPressed(MD_KEY_LEFT_SHIFT) || Input::IsKeyPressed(MD_KEY_RIGHT_SHIFT);
+
+		switch (e.GetKeyCode())
+		{
+		case MD_KEY_N:
+			if (shiftPressed)
+				NewScene();
+			break;
+		case MD_KEY_O:
+			if (ctrlPressed)
+				OpenScene();
+			break;
+		case MD_KEY_S:
+			if (ctrlPressed && shiftPressed)
+				SaveSceneAs();
+			break;
+
+			// Gizmos
+		case MD_KEY_Q:
+			m_ImGuizmoType = -1;
+			break;
+		case MD_KEY_W:
+			m_ImGuizmoType = ImGuizmo::OPERATION::TRANSLATE;
+			break;
+		case MD_KEY_E:
+			m_ImGuizmoType = ImGuizmo::OPERATION::SCALE;
+			break;
+		case MD_KEY_R:
+			m_ImGuizmoType = ImGuizmo::OPERATION::ROTATE;
+			break;
+		}
+		return false;
+	}
+
+	void EditorLayer::NewScene()
+	{
+		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+	}
+	void EditorLayer::OpenScene()
+	{
+		std::optional<std::string> filepath = FileDialogs::OpenFile("Monstera Scene (*.monstera)\0*.monstera\0");
+
+		if (filepath)
+		{
+			NewScene();
+
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Deserialize(*filepath);
+		}
+	}
+	void EditorLayer::SaveSceneAs()
+	{
+		std::optional<std::string> filepath = FileDialogs::SaveFile("Monstera Scene (*.monstera)\0*.monstera\0");
+
+		if (filepath)
+		{
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Serialize(*filepath);
+		}
 	}
 }

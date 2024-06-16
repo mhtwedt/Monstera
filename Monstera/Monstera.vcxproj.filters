@@ -19,11 +19,17 @@
     <Filter Include="src\Monstera\ImGui">
       <UniqueIdentifier>{0FB91435-FB9C-D58A-64FD-CFDD5000C00C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Monstera\Math">
+      <UniqueIdentifier>{1E406F47-8A56-6DDD-D3CD-F8FE3F233E65}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Monstera\Renderer">
       <UniqueIdentifier>{6B3952B2-D7A5-0DAD-A099-A50A0CC52F15}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Monstera\Scene">
       <UniqueIdentifier>{02B1C435-EE94-858B-57F5-7FDE43F86F0D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Monstera\Utils">
+      <UniqueIdentifier>{4545F235-3129-B38B-9A89-ADDE868C9D0D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -36,6 +42,9 @@
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\ImGuizmo">
+      <UniqueIdentifier>{73BF7F4C-DF4A-ED10-E85B-700554664911}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
@@ -114,10 +123,16 @@
     <ClInclude Include="src\Monstera\ImGui\ImGuiLayer.h">
       <Filter>src\Monstera\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Math\Math.h">
+      <Filter>src\Monstera\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\Buffer.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\Camera.h">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monstera\Renderer\EditorCamera.h">
       <Filter>src\Monstera\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Monstera\Renderer\Framebuffer.h">
@@ -174,6 +189,9 @@
     <ClInclude Include="src\Monstera\Scene\ScriptableEntity.h">
       <Filter>src\Monstera\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Monstera\Utils\PlatformUtils.h">
+      <Filter>src\Monstera\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -203,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="src\mdpch.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\common.hpp">
       <Filter>vendor\glm\glm</Filter>
@@ -1475,7 +1496,13 @@
     <ClCompile Include="src\Monstera\ImGui\ImGuiLayer.cpp">
       <Filter>src\Monstera\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monstera\Math\Math.cpp">
+      <Filter>src\Monstera\Math</Filter>
+    </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\Buffer.cpp">
+      <Filter>src\Monstera\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monstera\Renderer\EditorCamera.cpp">
       <Filter>src\Monstera\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Monstera\Renderer\Framebuffer.cpp">
@@ -1547,11 +1574,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\mdpch.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
+      <Filter>vendor\ImGuizmo</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>

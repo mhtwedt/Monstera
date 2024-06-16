@@ -8,7 +8,7 @@ workspace "Monstera"
 		"Dist"
 	}
 
-	startproject "Sandbox"
+	startproject "Monstera-Editor"
 
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -22,6 +22,7 @@ IncludeDir["glm"] = "Monstera/vendor/glm"
 IncludeDir["stb_image"] = "Monstera/vendor/stb_image"
 IncludeDir["entt"] = "Monstera/vendor/entt/include"
 IncludeDir["yaml_cpp"] = "Monstera/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "Monstera/vendor/ImGuizmo"
 
 
 group "Dependencies"
@@ -53,8 +54,9 @@ project "Monstera"
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
-
+		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/ImGuizmo/ImGuizmo.h",
+		"%{prj.name}/vendor/ImGuizmo/ImGuizmo.cpp"
 	}
 
 	defines
@@ -73,7 +75,8 @@ project "Monstera"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.yaml_cpp}"
+		"%{IncludeDir.yaml_cpp}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links
@@ -85,6 +88,9 @@ project "Monstera"
 		"opengl32.lib",
 		"dwmapi.lib"
 	}
+
+	filter "files:Monstera/vendor/ImGuizmo/**.cpp"
+		flags { "NoPCH" }
 	
 	filter "system:windows"
 		systemversion "latest"
@@ -139,7 +145,8 @@ project "Monstera-Editor"
 		"Monstera/src",
 		"Monstera/vendor",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}"
 	}
 
 	links
@@ -172,7 +179,7 @@ project "Monstera-Editor"
 	--	staticruntime "off"
 		runtime "Release"
 
-		project "Sandbox"
+project "Sandbox"
 		location "Sandbox"
 		kind "ConsoleApp"
 		language "C++"
@@ -226,3 +233,60 @@ project "Monstera-Editor"
 			optimize "on"
 		--	staticruntime "off"
 			runtime "Release"
+
+project "WIN"
+		location "WIN"
+		kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++20"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"Monstera/vendor/spdlog/include",
+		"Monstera/src",
+		"Monstera/vendor",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}",
+		"C:/opencv/build/include"
+	}
+
+	links
+	{
+		"Monstera"
+	}
+
+	filter "system:windows"
+		staticruntime "On"
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		defines "MD_DEBUG"
+	--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
+		symbols "on"
+	--	staticruntime "off"
+		runtime "Debug"
+
+	filter "configurations:Release"
+		defines "MD_RELEASE"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
+		optimize "on"
+	--	staticruntime "off"
+		runtime "Release"
+
+	filter "configurations:Dist"
+		defines "MD_DIST"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
+		optimize "on"
+	--	staticruntime "off"
+		runtime "Release"

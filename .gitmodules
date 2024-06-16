@@ -15,3 +15,6 @@
 [submodule "Monstera/vendor/yaml-cpp"]
 	path = Monstera/vendor/yaml-cpp
 	url = https://github.com/mhtwedt/yaml-cpp
+[submodule "Monstera/vendor/ImGuizmo"]
+	path = Monstera/vendor/ImGuizmo
+	url = https://github.com/mhtwedt/ImGuizmo
