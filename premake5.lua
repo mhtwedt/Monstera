@@ -23,6 +23,7 @@ IncludeDir["stb_image"] = "Monstera/vendor/stb_image"
 IncludeDir["entt"] = "Monstera/vendor/entt/include"
 IncludeDir["yaml_cpp"] = "Monstera/vendor/yaml-cpp/include"
 IncludeDir["ImGuizmo"] = "Monstera/vendor/ImGuizmo"
+IncludeDir["FFmpeg"] = "Monstera/vendor/FFmpeg"
 
 
 group "Dependencies"
@@ -30,6 +31,7 @@ group "Dependencies"
 	include "Monstera/vendor/Glad"
 	include "Monstera/vendor/imgui"
 	include "Monstera/vendor/yaml-cpp"
+	include "Monstera/vendor/FFmpeg"
 --	include "Monstera/vendor/glm"
 group ""
 
