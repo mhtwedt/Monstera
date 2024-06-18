@@ -23,6 +23,7 @@ IncludeDir["stb_image"] = "Monstera/vendor/stb_image"
 IncludeDir["entt"] = "Monstera/vendor/entt/include"
 IncludeDir["yaml_cpp"] = "Monstera/vendor/yaml-cpp/include"
 IncludeDir["ImGuizmo"] = "Monstera/vendor/ImGuizmo"
+IncludeDir["FFmpeg"] = "Monstera/vendor/FFmpeg"
 
 
 group "Dependencies"
@@ -247,7 +248,7 @@ project "WIN"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
 	}
 
 	includedirs
@@ -258,7 +259,8 @@ project "WIN"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.ImGuizmo}",
-		"C:/opencv/build/include"
+		"C:/opencv/build/include",
+		"%{IncludeDir.FFmpeg}"
 	}
 
 	links

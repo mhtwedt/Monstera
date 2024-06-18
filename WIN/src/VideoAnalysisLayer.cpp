@@ -17,9 +17,15 @@
 
 //Start of WIN Specific video libraries
 
+// FFmpeg specific libraries
+/*extern "C" {
+	#include <libavcodec/avcodec.h>
+	#include <libavformat/avformat.h>
+	#include <libswscale/swscale.h>
+	#include <inttypes.h>
+}*/
 
-
-//OpenCV
+//OpenCV (we're trying to not use this route)
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
