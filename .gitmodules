@@ -8,6 +8,7 @@
 [submodule "Monstera/vendor/imgui"]
 	path = Monstera/vendor/imgui
 	url = https://github.com/mhtwedt/imgui
+	branch = docking
 [submodule "Monstera/vendor/glm"]
 	path = Monstera/vendor/glm
 	url = https://github.com/g-truc/glm
