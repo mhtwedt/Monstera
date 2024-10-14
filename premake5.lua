@@ -292,3 +292,61 @@ project "WIN"
 		optimize "on"
 	--	staticruntime "off"
 		runtime "Release"
+
+project "ImGuiTest"
+location "ImGuiTest"
+kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++20"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp",
+	}
+
+	includedirs
+	{
+		"Monstera/vendor/spdlog/include",
+		"Monstera/src",
+		"Monstera/vendor",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}",
+		"C:/opencv/build/include",
+		"%{IncludeDir.FFmpeg}"
+	}
+
+	links
+	{
+		"Monstera"
+	}
+
+	filter "system:windows"
+		staticruntime "On"
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		defines "MD_DEBUG"
+	--	buildoptions "/MDd" -- This functionality is replaced by the runtime command
+		symbols "on"
+	--	staticruntime "off"
+		runtime "Debug"
+
+	filter "configurations:Release"
+		defines "MD_RELEASE"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
+		optimize "on"
+	--	staticruntime "off"
+		runtime "Release"
+
+	filter "configurations:Dist"
+		defines "MD_DIST"
+	--	buildoptions "/MD" -- This functionality is replaced by the runtime command
+		optimize "on"
+	--	staticruntime "off"
+		runtime "Release"
