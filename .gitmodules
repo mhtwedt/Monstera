@@ -18,3 +18,6 @@
 [submodule "Monstera/vendor/FFmpeg"]
 	path = Monstera/vendor/FFmpeg
 	url = https://github.com/mhtwedt/FFmpeg
+[submodule "Monstera/vendor/imgui"]
+	path = Monstera/vendor/imgui
+	url = https://github.com/mhtwedt/imgui
