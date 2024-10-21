@@ -21,3 +21,4 @@
 [submodule "Monstera/vendor/imgui"]
 	path = Monstera/vendor/imgui
 	url = https://github.com/mhtwedt/imgui
+	branch = master
